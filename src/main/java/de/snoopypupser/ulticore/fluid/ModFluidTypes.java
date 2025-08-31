@@ -14,9 +14,9 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import org.joml.Vector3f;
 
 public class ModFluidTypes {
-    public static final ResourceLocation WATER_STILL_RL = new ResourceLocation("block/water_still");
-    public static final ResourceLocation WATER_FLOWING_RL = new ResourceLocation("block/water_flow");
-    public static final ResourceLocation SOAP_OVERLAY_RL = new ModelResourceLocation(UltiCore.MOD_ID, "misc/in_soap_water.png");
+    public static final ResourceLocation WATER_STILL_RL = new ResourceLocation(UltiCore.MOD_ID,"block/water_still");
+    public static final ResourceLocation WATER_FLOWING_RL = new ResourceLocation(UltiCore.MOD_ID,"block/water_flow");
+    public static final ResourceLocation SOAP_OVERLAY_RL = new ResourceLocation(UltiCore.MOD_ID, "misc/in_soap_water.png");
 
     public static final DeferredRegister<FluidType> FLUID_TYPES =
             DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, UltiCore.MOD_ID);
