@@ -27,8 +27,6 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> ULTINGOT = ITEMS.register("ultingot",
             () -> new Item(new Item.Properties()));
-    public static final DeferredItem<Item> RAWULTBUCKET = ITEMS.register("rawultbucket",
-            () -> new Item(new Item.Properties()));
 
 
 

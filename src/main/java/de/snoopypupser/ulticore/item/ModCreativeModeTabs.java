@@ -2,6 +2,7 @@ package de.snoopypupser.ulticore.item;
 
 import de.snoopypupser.ulticore.UltiCore;
 import de.snoopypupser.ulticore.block.ModBlocks;
+import de.snoopypupser.ulticore.fluid.ModFluids;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -26,7 +27,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.CORESHARD);
                         output.accept(ModItems.RAWULT);
                         output.accept(ModItems.ULTINGOT);
-                        output.accept(ModItems.RAWULTBUCKET);
+
 
 
 
