@@ -20,7 +20,7 @@ import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import de.snoopypupser.ulticore.*;
+import de.snoopypupser.ulticore.UltiCore;
 
 public class ModFluids {
     public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.FLUID_TYPES, UltiCore.MOD_ID);
@@ -28,14 +28,14 @@ public class ModFluids {
     public static final DeferredRegister<Item> BUCKETS = DeferredRegister.createItems(UltiCore.MOD_ID);
     public static final DeferredRegister<Block> SOURCEBLOCKS = DeferredRegister.createBlocks(UltiCore.MOD_ID);
 
-    public static final DeferredHolder<FluidType, FluidType> LIQUID_TYPE = FLUID_TYPES.register("liquid", () -> new FluidType(FluidType.Properties.create().descriptionId("fluid.test.liquid")));
+    public static final DeferredHolder<FluidType, FluidType> LIQUID_TYPE = FLUID_TYPES.register("rawultliquid", () -> new FluidType(FluidType.Properties.create().descriptionId("Raw Ult Liquid")));
 
-    public static final DeferredHolder<Fluid, FlowingFluid> LIQUID_SOURCE = FLUIDS.register("liquid_source", () -> new BaseFlowingFluid.Source(liquidProperties()));
-    public static final DeferredHolder<Fluid, FlowingFluid> LIQUID_FLOWING = FLUIDS.register("liquid_flowing", () -> new BaseFlowingFluid.Flowing(liquidProperties()));
+    public static final DeferredHolder<Fluid, FlowingFluid> LIQUID_SOURCE = FLUIDS.register("rawultliquid_source", () -> new BaseFlowingFluid.Source(liquidProperties()));
+    public static final DeferredHolder<Fluid, FlowingFluid> LIQUID_FLOWING = FLUIDS.register("rawultliquid_flowing", () -> new BaseFlowingFluid.Flowing(liquidProperties()));
 
-    public static final DeferredHolder<Item, BucketItem> LIQUID_BUCKET = BUCKETS.register("liquid_bucket", () -> new BucketItem(LIQUID_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredHolder<Item, BucketItem> LIQUID_BUCKET = BUCKETS.register("rawultliquid_bucket", () -> new BucketItem(LIQUID_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
-    public static final DeferredHolder<Block, LiquidBlock> LIQUID_BLOCK = SOURCEBLOCKS.register("liquid_block", () -> new LiquidBlock(LIQUID_SOURCE.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
+    public static final DeferredHolder<Block, LiquidBlock> LIQUID_BLOCK = SOURCEBLOCKS.register("rawultliquid_block", () -> new LiquidBlock(LIQUID_SOURCE.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
 
     public static void register(IEventBus modbus) {
         FLUID_TYPES.register(modbus);
@@ -48,12 +48,12 @@ public class ModFluids {
     private static final IClientFluidTypeExtensions liquidExt = new IClientFluidTypeExtensions() {
         @Override
         public ResourceLocation getStillTexture() {
-            return UltiCore.rl("block/liquid_still");
+            return UltiCore.rl("block/rawultliquid_still");
         }
 
         @Override
         public ResourceLocation getFlowingTexture() {
-            return UltiCore.rl("block/liquid_flowing");
+            return UltiCore.rl("block/rawultliquid_flowing");
         }
     };
 
