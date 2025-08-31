@@ -1,0 +1,18 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "ulticore:brokendeepslateultblock"
+    }
+  ],
+  "processing_time": 2000,
+  "results": [
+    {
+      "id": "ulticore:rawult"
+    },
+    {
+      "chance": 0.1,
+      "id": "ulticore:rawult"
+    }
+  ]
+}

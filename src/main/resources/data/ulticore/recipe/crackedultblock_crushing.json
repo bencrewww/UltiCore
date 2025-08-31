@@ -1,0 +1,15 @@
+
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "ulticore:ultore"
+    }
+  ],
+  "processing_time": 2000,
+  "results": [
+    {
+      "id": "ulticore:crackedultblock"
+    }
+  ]
+}

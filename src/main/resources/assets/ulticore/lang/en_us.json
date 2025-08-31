@@ -1,0 +1,22 @@
+{
+  "item.ulticore.ulticore": "Ulti Core",
+  "item.ulticore.fortunecore": "Fortune Core",
+  "item.ulticore.shardofrings": "Shard of Rings",
+  "item.ulticore.ringoffortune": "Ring of Fortune",
+  "item.ulticore.coreshard": "Infinity Nuggit",
+  "item.ulticore.rawult": "Raw Ult",
+  "item.ulticore.ultingot": "Ult Ingot",
+  "item.ulticore.rawultbucket": "Raw Ult Bucket",
+  "item.ulticore.soap_water_bucket": "Soap Water Bucket",
+
+
+
+
+  "block.ulticore.ultore": "Ult Ore",
+  "block.ulticore.deepslateultore": "Deepslate Ult Ore",
+  "block.ulticore.ultblock": "Ult Block",
+  "block.ulticore.crackedultblock": "Cracked Ult Block",
+  "block.ulticore.crackeddeepslateultblock": "Cracked Deepslate Ult Block",
+  "block.ulticore.brokenultblock": "Broken Ult Block",
+  "block.ulticore.brokendeepslateultblock": "Broken Deepslate Ult Block"
+}

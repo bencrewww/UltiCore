@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "ulticore:brokendeepslateultblock",
+    "ulticore:crackeddeepslateultblock",
+    "ulticore:brokenultblock",
+    "ulticore:crackedultblock",
+    "ulticore:ultblock",
+    "ulticore:ultore",
+    "ulticore:deepslateultore"
+
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "ulticore:deepslateultore"
+    }
+  ],
+  "processing_time": 2000,
+  "results": [
+    {
+      "id": "ulticore:crackeddeepslateultblock"
+    }
+  ]
+}
