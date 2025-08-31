@@ -1,8 +1,6 @@
 package de.snoopypupser.ulticore;
 
 import de.snoopypupser.ulticore.block.ModBlocks;
-import de.snoopypupser.ulticore.fluid.ModFluidTypes;
-import de.snoopypupser.ulticore.fluid.ModFluids;
 import de.snoopypupser.ulticore.item.ModCreativeModeTabs;
 import de.snoopypupser.ulticore.item.ModItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -45,7 +43,6 @@ public class UltiCore {
 
         ModCreativeModeTabs.register(modEventBus);
 
-        ModFluidTypes.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
@@ -71,12 +68,10 @@ public class UltiCore {
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
-    @EventBusSubscriber(modid = UltiCore.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
-       @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-           ItemBlockRenderTypes.setRenderLayer(ModFluids.SOURCE_SOAP_WATER.get(), RenderType.translucent());
-           ItemBlockRenderTypes.setRenderLayer(ModFluids.FLOWING_SOAP_WATER.get(), RenderType.translucent());
-        }
-    }
+    //@EventBusSubscriber(modid = UltiCore.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    //public static class ClientModEvents {
+    //@SubscribeEvent
+    //public static void onClientSetup(FMLClientSetupEvent event) {
+    //}
+    //}
 }

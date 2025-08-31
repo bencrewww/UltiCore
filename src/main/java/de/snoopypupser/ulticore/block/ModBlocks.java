@@ -1,7 +1,6 @@
 package de.snoopypupser.ulticore.block;
 
 import de.snoopypupser.ulticore.UltiCore;
-import de.snoopypupser.ulticore.fluid.ModFluidTypes;
 import de.snoopypupser.ulticore.item.ModItems;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
@@ -9,7 +8,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -80,10 +78,6 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
             )
     );
-
-
-    public static final DeferredBlock<LiquidBlock> SOAP_WATER_BLOCK = BLOCKS.register("soap_water_block",
-            () -> LiquidBlock(ModFluids.SOURCE_SOAP_WATER, BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
 
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

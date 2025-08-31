@@ -1,37 +1,67 @@
 package de.snoopypupser.ulticore.fluid;
 
-import de.snoopypupser.ulticore.UltiCore;
-import de.snoopypupser.ulticore.block.ModBlocks;
-import de.snoopypupser.ulticore.fluid.ModFluidTypes;
-import de.snoopypupser.ulticore.item.ModItems;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.fluids.BaseFlowingFluid;
+import net.neoforged.neoforge.fluids.BaseFlowingFluid.Properties;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import org.intellij.lang.annotations.Flow;
-
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import de.snoopypupser.ulticore.*;
 
 public class ModFluids {
-    public static final DeferredRegister<Fluid> FLUIDS =
-            DeferredRegister.create(DeferredRegister.create(FlowingFluid), UltiCore.MOD_ID);
+    public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(NeoForgeRegistries.FLUID_TYPES, UltiCore.MOD_ID);
+    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(BuiltInRegistries.FLUID, UltiCore.MOD_ID);
+    public static final DeferredRegister<Item> BUCKETS = DeferredRegister.createItems(UltiCore.MOD_ID);
+    public static final DeferredRegister<Block> SOURCEBLOCKS = DeferredRegister.createBlocks(UltiCore.MOD_ID);
 
-    public static final DeferredRegister<Fluid> SOURCE_SOAP_WATER = FLUIDS.register("soap_water_fluid",
-            () -> new FlowingFluid(ModFluids.SOAP_WATER_FLUID_PROPERTIES) {
-            });
-    public static final DeferredRegister<FlowingFluid> FLOWING_SOAP_WATER = FLUIDS.register("flowing_soap_water",
-            () -> new FlowingFluid(ModFluids.SOAP_WATER_FLUID_PROPERTIES) {
-            });
+    public static final DeferredHolder<FluidType, FluidType> LIQUID_TYPE = FLUID_TYPES.register("liquid", () -> new FluidType(FluidType.Properties.create().descriptionId("fluid.test.liquid")));
 
+    public static final DeferredHolder<Fluid, FlowingFluid> LIQUID_SOURCE = FLUIDS.register("liquid_source", () -> new BaseFlowingFluid.Source(liquidProperties()));
+    public static final DeferredHolder<Fluid, FlowingFluid> LIQUID_FLOWING = FLUIDS.register("liquid_flowing", () -> new BaseFlowingFluid.Flowing(liquidProperties()));
 
-    public static final FlowingFluid SOAP_WATER_FLUID_PROPERTIES = new FlowingFluid(
-            ModFluidTypes.SOAP_WATER_FLUID_TYPE, SOURCE_SOAP_WATER, FLOWING_SOAP_WATER)
-            .slopeFindDistance(2).levelDecreasePerBlock(2).block(ModBlocks.SOAP_WATER_BLOCK)
-            .bucket(ModItems.SOAP_WATER_BUCKET);
+    public static final DeferredHolder<Item, BucketItem> LIQUID_BUCKET = BUCKETS.register("liquid_bucket", () -> new BucketItem(LIQUID_SOURCE.get(), new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
 
+    public static final DeferredHolder<Block, LiquidBlock> LIQUID_BLOCK = SOURCEBLOCKS.register("liquid_block", () -> new LiquidBlock(LIQUID_SOURCE.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)));
 
-    public static void register(IEventBus eventBus) {
-        FLUIDS.register(eventBus);
+    public static void register(IEventBus modbus) {
+        FLUID_TYPES.register(modbus);
+        FLUIDS.register(modbus);
+        BUCKETS.register(modbus);
+        SOURCEBLOCKS.register(modbus);
+        modbus.addListener(ModFluids::clientExt);
     }
 
+    private static final IClientFluidTypeExtensions liquidExt = new IClientFluidTypeExtensions() {
+        @Override
+        public ResourceLocation getStillTexture() {
+            return UltiCore.rl("block/liquid_still");
+        }
 
+        @Override
+        public ResourceLocation getFlowingTexture() {
+            return UltiCore.rl("block/liquid_flowing");
+        }
+    };
+
+    private static void clientExt(RegisterClientExtensionsEvent event) {
+        event.registerFluidType(liquidExt, LIQUID_TYPE.get());
+    }
+
+    private static Properties liquidProperties() {
+        return new Properties(LIQUID_TYPE, LIQUID_SOURCE, LIQUID_FLOWING).bucket(LIQUID_BUCKET).block(LIQUID_BLOCK);
+    }
 }
